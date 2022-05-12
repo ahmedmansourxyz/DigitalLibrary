@@ -3,23 +3,20 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-
-    <h1>Register</h1>
-
     <div class="w-4/5 m-auto text-center">
         <div class="py-12 border-b border-gray-200">
             <h1 class="text-6xl pt-12 pb-8">
-                Register
+                Create an Account
             </h1>
 
             {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.name) }}
+            {{ form_row(registrationForm.surname) }}
             {{ form_row(registrationForm.email) }}
             {{ form_row(registrationForm.plainPassword) }}
+            {{ form_row(registrationForm.confirmPassword) }}
 
-            {{ form_row(registrationForm.agreeTerms) }}
+
 
             <button
                     type="submit"

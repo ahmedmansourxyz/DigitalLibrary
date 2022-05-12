@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Account;
 use App\Form\RegistrationFormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -33,13 +34,23 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-            $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+
+            if($form->get('confirmPassword')->getData() == $form->get('plainPassword')->getData()) {
+                // encode the plain password
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+            }else{
+                echo('Passwords do not match');
+            }
+
+            $user->setName($form->get('name')->getData());
+            $user->setSurname($form->get('surname')->getData());
+
+
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -52,7 +63,7 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
+
 
             return $this->redirectToRoute('app_books');
         }

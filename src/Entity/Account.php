@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 #[ORM\Entity(repositoryClass: AccountRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Account implements UserInterface, PasswordAuthenticatedUserInterface
@@ -19,6 +20,12 @@ class Account implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
+
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    private $name;
+
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    private $surname;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
@@ -45,6 +52,35 @@ class Account implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): self
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->name;
+    }
+
 
     /**
      * A visual identifier that represents this user.
