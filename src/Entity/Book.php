@@ -29,21 +29,21 @@ class Book
     private $pageCount;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private $imagePath;
+    private $image_path;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getimagePath(): ?string
+    public function getimage_path(): ?string
     {
-        return $this->imagePath;
+        return $this->image_path;
     }
 
-    public function setimagePath(string $imagePath): self
+    public function setimage_path(string $image_path): self
     {
-        $this->imagePath = $imagePath;
+        $this->image_path = $image_path;
 
         return $this;
     }
