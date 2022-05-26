@@ -84,6 +84,17 @@
                     </a>
                 </li>
 
+                {% if app.user == true %}
+                    <li class="mr-3">
+                        <a
+                                class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                                href="/profile"
+                                @click="isOpen = false">
+                            Profile
+                        </a>
+                    </li>
+                {% endif %}
+
                 <li class="mr-3">
                     <a
                             class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
