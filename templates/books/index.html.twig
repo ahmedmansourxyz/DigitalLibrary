@@ -2,13 +2,41 @@
 
 {% block title %}Catalogue{% endblock %}
 
+
+
 {% block body %}
-<style>
-    .main-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .main-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="w-4/5 m-auto text-center">
+        <div class="py-12 border-b border-gray-200">
+            <h1 class="text-6xl pt-12 pb-8">
+                Library of {{ books|length }} books
+            </h1>
 
-<div class="main-wrapper">
+        </div>
+    </div>
 
-</div>
+
+    <div class="md:grid lg:grid-cols-3 gap-20 w-4/5 mx-auto py-15 ">
+        <!-- Review Item -->
+        {% for book in books %}
+            <div class="text-center pt-8 pb-4">
+                <img
+                        src="{{ book.imagePath }}"
+                        alt=""
+                        class="shadow-xl rounded-md"
+                />
+
+                <h2 class="text-gray-700 font-bold text-3xl py-2">
+                    {{ book.title }}
+                </h2>
+
+                <span class="text-gray-500">
+                    By <span class="italic text-sm text-gray-800">{{ book.author }} | {{ book.releaseYear }}
+                </span>
+                <br/><br/>
+                <a href="/books/{{ book.id }}" class="uppercase border border-gray-500 text-gray-600 text-lg py-4 px-12 rounded transition transition-all hover:bg-gray-800 hover:text-white">
+                    Keep Reading
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

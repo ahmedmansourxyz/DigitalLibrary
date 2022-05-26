@@ -32,6 +32,24 @@ Yuval Noah Harari challenges everything we know about being human.
 Earth is 4.5 billion years old. In just a fraction of that time, one species among countless others has conquered it: us.');
         $manager->persist($book2);
 
+        $book = new Book();
+        $book->setTitle("Jock of the Bushveld");
+        $book->setAuthor('Sir Percy FitzPatrick ');
+        $book->setReleaseYear(1907);
+        $book->setimagePath('https://images-na.ssl-images-amazon.com/images/I/51oZ4OMW4sL._SX331_BO1,204,203,200_.jpg');
+        $book->setPageCount(475);
+        $book->setPlot("Jock of the Bushveld is a story set in the rough Bushveld of South Africa's gold mining era. Jock is the faithful dog and companion of a transport rider. Through their adventures we catch a glimpse of those heady gold rush days. Jock, the runt of the litter turns out to be a faithful companion to the end.");
+        $manager->persist($book);
+
+        $book = new Book();
+        $book->setTitle("Devil's Peak: A Novel");
+        $book->setAuthor('Deon Meyer');
+        $book->setReleaseYear(2004);
+        $book->setimagePath('https://m.media-amazon.com/images/I/41lgkBRxRHL.jpg');
+        $book->setPageCount(490);
+        $book->setPlot("A young woman makes a terrible confession to a priest. An honorable man takes his own revenge for an unspeakable tragedy. An aging inspector tries to get himself sober while taking on the most difficult case of his career. From this beginning, Deon Meyer weaves a story of astonishing complexity and suspense, as Inspector Benny Griessel faces off against a dangerous vigilante who has everything on his side, including public sympathy.");
+        $manager->persist($book);
+
         $manager->flush();
     }
 }

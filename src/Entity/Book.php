@@ -36,7 +36,7 @@ class Book
         return $this->id;
     }
 
-    public function getimagePath(): ?int
+    public function getimagePath(): ?string
     {
         return $this->imagePath;
     }
