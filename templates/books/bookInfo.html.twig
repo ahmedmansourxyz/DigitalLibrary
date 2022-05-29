@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block body %}
+
+    <div class="md:grid lg:grid-cols-3 gap-20 w-4/5 mx-auto py-15 ">
+    <!-- Review Item -->
+
+    <div class="text-center pt-8 pb-4">
+        <img
+                src="{{ book.imagePath }}"
+                alt=""
+                class="shadow-xl rounded-md"
+        />
+        <p>
+            <b>Title: </b>{{ book.title }} <br/>
+            <b>Release Year: </b>{{ book.releaseYear }}<br/>
+            <b>Author: </b>{{ book.author }}<br/>
+            <b>Plot: </b>{{ book.plot }}<br/>
+        </p>
+
+
+    </div>
+
+{% endblock %}
