@@ -17,6 +17,9 @@ class Book
     private $title;
 
     #[ORM\Column(type: 'string', length: 255)]
+    private $genre;
+
+    #[ORM\Column(type: 'string', length: 255)]
     private $author;
 
     #[ORM\Column(type: 'integer')]
@@ -29,21 +32,21 @@ class Book
     private $pageCount;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private $imagePath;
+    private $image_path;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getimagePath(): ?string
+    public function getimage_path(): ?string
     {
-        return $this->imagePath;
+        return $this->image_path;
     }
 
-    public function setimagePath(string $imagePath): self
+    public function setimage_path(string $image_path): self
     {
-        $this->imagePath = $imagePath;
+        $this->image_path = $image_path;
 
         return $this;
     }
@@ -59,6 +62,19 @@ class Book
 
         return $this;
     }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(string $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
 
     public function getAuthor(): ?string
     {

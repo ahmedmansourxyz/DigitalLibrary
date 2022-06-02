@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use Amp\Http\Client\Request;
 use App\Repository\BookRepository;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,5 +36,30 @@ class BooksController extends AbstractController
         return $this->render('books/bookInfo.html.twig', [
             'book' => $book
         ]);
+    }
+
+    public function searchBar(){
+        $form = $this->createFormBuilder(null)
+            ->add('query', TextType::class)
+            ->add('search', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
+        ->getForm();
+
+        return $this->render('books/searchBar.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/books/searchResult.html.twig", name="handleSearch")
+     * @param Request $request
+     */
+
+    public function handleSearch (Request $request){
+        var_dump($request->request);
+        die();
     }
 }

@@ -15,7 +15,7 @@ class AccountFixtures extends Fixture
         $account->setSurname("Admin");
         $account->setEmail('digilib.auth@gmail.com');
         $account->setPassword('SoftwareStudio1');
-        $account->setRoles(['ROLE_ADMIN']);
+        $account->setRoles(array('ROLE_ADMIN'));
         $account->setIsVerified(1);
         $manager->persist($account);
 
