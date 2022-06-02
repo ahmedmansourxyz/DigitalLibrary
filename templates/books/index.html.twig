@@ -19,6 +19,7 @@
         <!-- Review Item -->
         {% for book in books %}
             <div class="text-center pt-8 pb-4">
+                <a href="/books/{{ book.id }}">
                 <img
                         src="{{ book.image_path }}"
                         alt=""
@@ -33,8 +34,7 @@
                     By <span class="italic text-sm text-gray-800">{{ book.author }} | {{ book.releaseYear }}
                 </span>
                 <br/><br/>
-                <a href="/books/{{ book.id }}" class="uppercase border border-gray-500 text-gray-600 text-lg py-4 px-12 rounded transition transition-all hover:bg-gray-800 hover:text-white">
-                    Keep Reading
+
                 </a>
             </div>
         {% endfor %}
