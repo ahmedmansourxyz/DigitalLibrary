@@ -19,8 +19,12 @@
             <b>Author: </b>{{ book.author }}<br/>
             <b>Plot: </b>{{ book.plot }}<br/>
         </p>
+    </div>
 
-
+    <div class="mx-auto w-4/5 my-8">
+        <a href="/lend/{{ book.id }}" class="uppercase border border-gray-500 text-lg py-4 px-6 rounded bg-gray-800 text-white">
+            Lend
+        </a>
     </div>
 
 {% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
@@ -33,6 +35,14 @@ class Book
 
     #[ORM\Column(type: 'string', nullable: true)]
     private $image_path;
+
+    #[ORM\OneToMany(mappedBy: 'book_id', targetEntity: Lendings::class, orphanRemoval: true)]
+    private $lendings;
+
+    public function __construct()
+    {
+        $this->lendings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -123,4 +133,41 @@ class Book
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Lendings>
+     */
+    public function getLendings(): Collection
+    {
+        return $this->lendings;
+    }
+
+    public function addLending(Lendings $lending): self
+    {
+        if (!$this->lendings->contains($lending)) {
+            $this->lendings[] = $lending;
+            $lending->setBookId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLending(Lendings $lending): self
+    {
+        if ($this->lendings->removeElement($lending)) {
+            // set the owning side to null (unless already changed)
+            if ($lending->getBookId() === $this) {
+                $lending->setBookId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getTitle();
+    }
+
 }
+
