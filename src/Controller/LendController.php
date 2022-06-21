@@ -41,13 +41,14 @@ class LendController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $newLend = $form->getData();
-            $dob = new \DateTime();
-            $newLend->setStartDate($dob);
-            $newLend->setAccountId($user->getId());
-            dd($newLend);
-            exit();
-           // $this->em->persist($newLend);
-          //  $this->em->flush();
+            $start = new \DateTime();
+            $newLend->setStartDate($start);
+            $end = $form->get('end_date');
+            //$newLend->setEndDate(strtotime($end));
+            $newLend->setAccountId($user);
+            //dd($form->get('end_date'));
+            $this->em->persist($newLend);
+            $this->em->flush();
 
             return $this->redirectToRoute('app_profile');
         }
