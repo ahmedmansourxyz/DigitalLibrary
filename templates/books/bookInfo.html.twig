@@ -4,14 +4,14 @@
 
 {% block body %}
 
-    <div class="md:grid lg:grid-cols-3 gap-20 w-4/5 mx-auto py-15 ">
+    <div class="md:grid lg:grid-cols-1 gap-20 w-4/5 mx-auto py-15  mt-20">
     <!-- Review Item -->
 
     <div class="text-center pt-8 pb-4">
         <img
                 src="{{ book.image_path }}"
                 alt=""
-                class="shadow-xl rounded-md"
+                class="shadow-xl rounded-md inline-flex"
         />
         <p>
             <b>Title: </b>{{ book.title }} <br/>
@@ -23,7 +23,7 @@
 
 
     </div>
-    <div class="static h='h-5' mx-auto w-4/5 my-8">
+    <div class="static h='h-5' mx-auto w-4/5 my-8 text-center">
         <a href="/lend/{{ book.id }}" class="uppercase border border-gray-500 text-lg py-4 px-6 rounded bg-gray-800 text-white">
             Lend
         </a>

@@ -14,6 +14,7 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
     </head>
     <body>
 
@@ -64,6 +65,9 @@
                 :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
                 @click.away="isOpen = false"
                 x-show.transition="true">
+
+
+
 
             <ul class="pt-10 lg:pt-0 list-reset lg:flex justify-center flex-1 items-center">
                 <li class="mr-3">
@@ -128,4 +132,5 @@
     </nav>
         {% block body %}{% endblock %}
     </body>
+
 </html>

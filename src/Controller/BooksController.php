@@ -57,11 +57,17 @@ class BooksController extends AbstractController
         ]);
     }
 
+
+
+
+
+
+
     /**
      * @Route("/books/searchResult.html.twig", name="handleSearch")
      * @param Request $request
      */
-
+    #[Route('handleSearch', methods: ['POST'], name: 'handleSearch')]
     public function handleSearch (Request $request){
         var_dump($request->request);
         die();
