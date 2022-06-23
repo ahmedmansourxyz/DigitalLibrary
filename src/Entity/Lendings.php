@@ -32,26 +32,26 @@ class Lendings
         return $this->id;
     }
 
-    public function getAccountId(): ?account
+    public function getAccountIdId(): ?account
     {
         return $this->account_id;
     }
 
-    public function setAccountId(?account $account_id): self
+    public function setAccountIdId(?account $account_id_id): self
     {
-        $this->account_id = $account_id;
+        $this->account_id = $account_id_id;
 
         return $this;
     }
 
-    public function getBookId(): ?book
+    public function getBookIdId(): ?book
     {
         return $this->book_id;
     }
 
-    public function setBookId(?book $book_id): self
+    public function setBookIdId(?book $book_id_id): self
     {
-        $this->book_id = $book_id;
+        $this->book_id = $book_id_id;
 
         return $this;
     }

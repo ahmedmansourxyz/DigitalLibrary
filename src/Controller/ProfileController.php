@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Account;
 use App\Repository\AccountRepository;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\LendingsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,20 +14,25 @@ use Doctrine\ORM\EntityManagerInterface;
 class ProfileController extends AbstractController
 {
     private  $accountRepository;
-    public function __construct(AccountRepository $accountRepository)
+    private $lendRepository;
+    public function __construct(AccountRepository $accountRepository, LendingsRepository $lendRepository)
     {
         $this->accountRepository = $accountRepository;
+        $this->lendRepository = $lendRepository;
     }
 
-    #[Route('/profile', name: 'app_profile')]
-    public function index(Request $request): Response
+    #[Route('/profile', methods: ['GET'], name: 'app_profile')]
+    public function index(Request $request, LendingsRepository $lendRepository): Response
     {
+        $lends = $this->lendRepository->findAll();
+
         $email = $request->getSession()->get('_security.last_username');
         
         $account = $this->accountRepository->findOneByEmail($email);
 
         return $this->render('profile/index.html.twig', [
-            'account' => $account
+            'account' => $account,
+            'lends' => $lends
         ]);
     }
 
